@@ -1,2 +1,30 @@
-# RF-Classifier
-AI-powered RF signal classification using deep learning in MATLAB. Classifies signals like WiFi, Bluetooth, and 5G using an ADALM-PLUTO SDR for real-world testing.
+# Radio Frequency Signal Classification Using Artificial Intelligence 📻🛜📶
+
+## Table of Contents
+- [Project Overview](#project-overview)
+  - [YouTube Link](#youtube-link)
+- [Hardware](#hardware)
+- [Installation and Usage](#installation-and-usage)
+  - [Prerequisites](#prerequisites)
+  - [Steps](#steps)
+- [References](#references)
+
+## **Project Overview**
+
+
+### **YouTube Link**
+
+
+
+## **Hardware**  
+
+
+## **Installation and Usage**
+
+### **Prerequisites**
+
+### **Steps**
+1. Clone the repository:
+
+
+## **References**
