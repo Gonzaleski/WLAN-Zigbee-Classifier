@@ -1,0 +1,49 @@
+# MATLAB backup and autosave files
+*.asv
+*.m~
+*.autosave
+
+# Data
+GeneratedData
+
+# MATLAB code generation and cache folders
+codegen/
+slprj/
+sccprj/
+*_ert_rtw/
+
+# MATLAB temporary files
+*.mex*
+*.p
+*.bak
+*.tmp
+
+# Simulink cache
+*.slxc
+*.slxc.lock
+
+# Simulink test and coverage
+*.cov
+*.xcov
+*.tlog
+
+# MATLAB session and preference files
+*.mat
+*.fig
+*.mdl.autosave
+*.slx.autosave
+
+# MATLAB crash dump files
+matlab_crash_dump.*
+*.log
+
+# Project-specific user data
+*.prj
+*.mlproj
+*.mlsettings
+*.SimulinkProject
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
