@@ -83,7 +83,7 @@ waveInfo.Bandwidth = 2e6;  % Zigbee BW is ~2 MHz
 waveInfo.Nfft = 256;       % For spectrogram consistency
 end
 
-function y = multipathChannelZigbee(x, sr, fc)
+function y = multipathChannelZigbee(x, sr)
   % Simple indoor multipath channel model
   chan = comm.RicianChannel( ...
       'SampleRate', sr, ...
