@@ -12,6 +12,7 @@
   imageSize = [256 256];
   numSubFrames = 40;
   frameDuration = numSubFrames*1e-3; 
+  sampleRate = 20e6;  % Hz
 
   load('trainedModel.mat', 'net');
 
