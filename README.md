@@ -1,4 +1,4 @@
-# Radio Frequency Signal Classification Using Artificial Intelligence 📻🛜📶
+# WLAN and Zigbee Signals Classification Using Artificial Intelligence 📻🛜📶
 
 ## Table of Contents
 - [Project Overview](#project-overview)
