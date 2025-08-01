@@ -20,7 +20,7 @@ This project is designed as part of the [Mathworks AI Challenge](https://uk.math
 
 ### **YouTube Link**
 
-[![Link to the YouTube Video](https://img.youtube.com/vi/7oP_TmdXER8/0.jpg)](https://www.youtube.com/watch?v=7oP_TmdXER8)
+[![Link to the YouTube Video]()]()
 
 ## **Hardware**  
 
