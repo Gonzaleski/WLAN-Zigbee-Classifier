@@ -25,6 +25,14 @@
 
 ### **Steps**
 1. Clone the repository:
+   ```bash
+   git clone https://github.com/Gonzaleski/WLAN-Zigbee-Classifier.git
+   ```
+
+2. Change the directory:
+   ```bash
+   cd WLAN-Zigbee-Classifier
+   ```
 
 
 ## **References**
