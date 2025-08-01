@@ -8,6 +8,10 @@
   rx.NumFramesInBurst = 1;
   Nfft = 4096;
   overlap = 10;
+  classNames = ["Background", "WLAN", "Zigbee"];
+  imageSize = [256 256];
+  numSubFrames = 40;
+  frameDuration = numSubFrames*1e-3; 
 
   load('trainedModel.mat', 'net');
 
@@ -28,4 +32,4 @@
     sampleRate,rx.CenterFrequency,frameDuration)
   figure
   freqBand = helperSpecSenseDisplayIdentifiedSignals(rxSpectrogram,predictedLabels,...
-    classNames,sampleRate,rx.CenterFrequency,frameDuration)
+    classNames,sampleRate,rx.CenterFrequency,frameDuration);
