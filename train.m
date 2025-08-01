@@ -1,54 +1,51 @@
-classes = ["Background", "WLAN", "Zigbee"];
-labelIDs = [0, 127, 255];  % Assuming 0-127-255 as before
-
-% Set paths
-trainDir = fullfile(pwd, 'GeneratedData');
-dataFolder = fullfile(trainDir, '256x256');
-
-% Image datastore
-imds = imageDatastore(dataFolder, ...
-    'IncludeSubfolders', true, ...
-    'FileExtensions', '.png', ...
-    'LabelSource', 'foldernames');
-
-% Pixel label datastore
-pxds = pixelLabelDatastore(dataFolder, classes, labelIDs, ...
-    'IncludeSubfolders', true, ...
-    'FileExtensions', '.hdf');
-
-% Combine into a pixelLabelImageDatastore
-pximds = combine(imds, pxds);
-
-% Split into 80/20
-numFiles = numel(imds.Files);  % or pxds.Files, should be the same
-
-shuffledIndices = randperm(numFiles);
-
-numTrain = round(0.8 * numFiles);
-
-trainIdx = shuffledIndices(1:numTrain);
-valIdx = shuffledIndices(numTrain+1:end);
-
-pximdsTrain = subset(pximds, trainIdx);
-pximdsVal = subset(pximds, valIdx);
-
-% Network definition (DeepLabv3+ with ResNet-18)
+trainDirRoot = fullfile(pwd,"GeneratedData");
+baseNetwork = 'resnet18';
+trainDir = fullfile(trainDirRoot,'256x256'); 
 imageSize = [256 256];
-numClasses = numel(classes);
-lgraph = deeplabv3plusLayers(imageSize, numClasses, 'resnet18');
+folders = trainDir;
+imds = imageDatastore(folders,FileExtensions=".png");
+classNames = ["Background", "WLAN", "Zigbee"];
 
-% Training options
-options = trainingOptions('adam', ...
-    'InitialLearnRate',1e-3, ...
-    'MaxEpochs',15, ...
-    'MiniBatchSize',16, ...
-    'Plots','training-progress', ...
-    'Shuffle','every-epoch', ...
-    'ValidationData', pximdsVal, ...
-    'ValidationFrequency', 50, ...
-    'VerboseFrequency',10);
+numClasses = length(classNames);
+pixelLabelID = floor((0:numClasses-1)/(numClasses-1)*255);
+pxdsTruthZigbeeWLAN = pixelLabelDatastore(folders,classNames,pixelLabelID,...
+                                  FileExtensions=".hdf");
 
-% Train network
-net = trainNetwork(pximdsTrain, lgraph, options);
+tbl = countEachLabel(pxdsTruthZigbeeWLAN);
+
+[imdsTrain,pxdsTrain,imdsVal,pxdsVal,imdsTest,pxdsTest] = ...
+  helperSpecSensePartitionData(imds,pxdsTruthZigbeeWLAN,[80 10 10]);
+cdsTrain = combine(imdsTrain,pxdsTrain);
+cdsVal = combine(imdsVal,pxdsVal);
+cdsTest = combine(imdsTest,pxdsTest);
+
+layers = deeplabv3plus([256 256],numel(classNames),baseNetwork);
+
+imageFreq = tbl.PixelCount ./ tbl.ImagePixelCount;
+imageFreq(isnan(imageFreq)) = [];
+classWeights = median(imageFreq) ./ imageFreq;
+classWeights = classWeights/(sum(classWeights)+eps(class(classWeights)));
+if length(classWeights) < numClasses
+    classWeights = [classWeights; zeros(numClasses - length(classWeights),1)];
+end
+
+mbs = 40;
+opts = trainingOptions("sgdm",...
+  MiniBatchSize = mbs,...
+  MaxEpochs = 1, ... % Change to 20
+  LearnRateSchedule = "piecewise",...
+  InitialLearnRate = 0.02,...
+  LearnRateDropPeriod = 10,...
+  LearnRateDropFactor = 0.1,...
+  ValidationData = cdsVal,...
+  ValidationPatience = 5,...
+  Shuffle="every-epoch",...
+  OutputNetwork = "best-validation-loss",...
+  Plots = 'training-progress');
+
+[net,trainInfo] = trainnet(cdsTrain,layers, ...
+    @(ypred,ytrue) lossFunction(ypred,ytrue,classWeights),opts); %#ok
+save(sprintf('myNet_%s_%s',baseNetwork, ...
+    datetime('now',format='yyyy_MM_dd_HH_mm')), 'net')
 
 save('trainedModel.mat', 'net');
