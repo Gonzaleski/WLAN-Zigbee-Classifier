@@ -4,7 +4,7 @@
 *.autosave
 
 # Data
-GeneratedData
+data
 
 # MATLAB code generation and cache folders
 codegen/
