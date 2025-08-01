@@ -29,6 +29,14 @@ This project is designed as part of the [Mathworks AI Challenge](https://uk.math
 ## **Installation and Usage**
 
 ### **Prerequisites**
+- [Communications Toolbox](https://uk.mathworks.com/help/comm/index.html)
+- [Deep Learning Toolbox](https://uk.mathworks.com/help/deeplearning/index.html)
+- [Signal Processing Toolbox](https://uk.mathworks.com/help/signal/index.html)
+- [Image Processing Toolbox](https://uk.mathworks.com/help/images/index.html)
+- [Computer Vision Toolbox](https://uk.mathworks.com/help/vision/index.html)
+- [WLAN Toolbox](https://uk.mathworks.com/help/wlan/index.html)
+- [Parallel Computing Toolbox](https://uk.mathworks.com/help/parallel-computing/index.html)
+- [ADALM-PLUTO Radio Support from Communications Toolbox](https://uk.mathworks.com/matlabcentral/fileexchange/61624-communications-toolbox-support-package-for-analog-devices-adalm-pluto-radio)
 
 ### **Steps**
 1. Clone the repository:
