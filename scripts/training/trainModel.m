@@ -1,8 +1,8 @@
-trainDirRoot = fullfile(pwd,"data");
+trainDirRoot = fullfile(pwd,"../../data");
+addpath(genpath('../../functions'));
 baseNetwork = 'resnet18';
-trainDir = fullfile(trainDirRoot,'256x256'); 
+folders = fullfile(trainDirRoot,'256x256'); 
 imageSize = [256 256];
-folders = trainDir;
 imds = imageDatastore(folders,FileExtensions=".png");
 classNames = ["Background", "WLAN", "Zigbee"];
 
@@ -14,7 +14,7 @@ pxdsTruthZigbeeWLAN = pixelLabelDatastore(folders,classNames,pixelLabelID,...
 tbl = countEachLabel(pxdsTruthZigbeeWLAN);
 
 [imdsTrain,pxdsTrain,imdsVal,pxdsVal,imdsTest,pxdsTest] = ...
-  helperSpecSensePartitionData(imds,pxdsTruthZigbeeWLAN,[80 10 10]);
+  partitionData(imds,pxdsTruthZigbeeWLAN,[80 10 10]);
 cdsTrain = combine(imdsTrain,pxdsTrain);
 cdsVal = combine(imdsVal,pxdsVal);
 cdsTest = combine(imdsTest,pxdsTest);
@@ -44,7 +44,7 @@ opts = trainingOptions("sgdm",...
   Plots = 'training-progress');
 
 [net,trainInfo] = trainnet(cdsTrain,layers, ...
-    @(ypred,ytrue) lossFunction(ypred,ytrue,classWeights),opts); %#ok
+    @(ypred,ytrue) lossFunction(ypred,ytrue,classWeights),opts);
 save(sprintf('myNet_%s_%s',baseNetwork, ...
     datetime('now',format='yyyy_MM_dd_HH_mm')), 'net')
 

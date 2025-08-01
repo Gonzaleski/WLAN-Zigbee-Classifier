@@ -1,4 +1,4 @@
-function helperSpecSenseWLANZigbeeTrainingData(numFrames, classNames, imageSize, trainDir, numSF, outFs, saveChannelInfo)
+function WLANZigbeeTrainingDataGenerator(numFrames, classNames, imageSize, trainDir, numSF, outFs, saveChannelInfo)
 % Generates training data with Zigbee, WLAN signals and their combinations.
 %
 % Inputs:
