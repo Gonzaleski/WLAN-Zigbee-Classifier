@@ -70,7 +70,8 @@ This project is designed as part of the [Mathworks AI Challenge](https://uk.math
    - In MATLAB, run `testWithSDR.m`
 
 ## **References**
-- [Spectrum Sensing with Deep Learning to Identify 5G, LTE, and WLAN Signals](https://uk.mathworks.com/help/comm/ug/spectrum-sensing-with-deep-learning-to-identify-5g-and-lte-signals.html)
 - [Create Waveforms Using Wireless Waveform Generator App](https://uk.mathworks.com/help/comm/ug/create-waveforms-using-wireless-waveform-generator-app.html)
 - [Semantic Segmentation Using Deep Learning](https://uk.mathworks.com/help/vision/ug/semantic-segmentation-using-deep-learning.html)
+- [Spectrum Sensing with Deep Learning to Identify 5G, LTE, and WLAN Signals](https://uk.mathworks.com/help/comm/ug/spectrum-sensing-with-deep-learning-to-identify-5g-and-lte-signals.html)
 - [ADALM-PLUTO_SDR](https://www.analog.com/en/resources/evaluation-hardware-and-software/evaluation-boards-kits/ADALM-PLUTO.html#eb-overview)
+- [Home Assistant](https://community.home-assistant.io/t/should-hue-and-sonoff-zigbee-be-on-same-or-different-channel/726429)
