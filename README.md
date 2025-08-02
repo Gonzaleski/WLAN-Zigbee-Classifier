@@ -1,4 +1,4 @@
-# WLAN and Zigbee Signals Classification Using Artificial Intelligence 📻🛜📶
+# WLAN and Zigbee Signals Classification Using AI 📡
 
 ## Table of Contents
 - [Project Overview](#project-overview)
