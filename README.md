@@ -9,7 +9,7 @@
   - [Steps](#steps)
 - [References](#references)
 
-## **Project Overview**
+## Project Overview
 
 The 2.4 GHz ISM band is a busy place, with protocols like Wi-Fi and Zigbee constantly vying for space. In environments like smart homes, industrial IoT, or crowded offices, distinguishing between these signals can be a significant challenge.
 
@@ -18,17 +18,55 @@ This project addresses that problem by developing a lightweight, AI-based classi
 This project is designed as part of the [Mathworks AI Challenge](https://uk.mathworks.com/academia/students/competitions/student-challenge/ai-challenge.html).
 
 
-### **YouTube Link**
+### YouTube Link
 
 [![Link to the YouTube Video](https://img.youtube.com/vi/dvrITYEaVH8/hqdefault.jpg)](https://youtu.be/dvrITYEaVH8?si=dOt6MKPmqVb1bmfs)
+
+## Classification
+
+### Zigbee
+
+To evaluate the model's performance, each signal is first generated using the `MATLAB Wireless Waveform Generator` and then transmitted over the air using the ADALM-PLUTO SDR.
+
+The figure below shows a Zigbee signal prepared for transmission:
+
+![WLAN Transmission](https://github.com/Gonzaleski/WLAN-Zigbee-Classifier/blob/main/resources/Transmissions/Zigbee-Transmission.png)
+
+The following image presents the classification results for the Zigbee signal.
+
+- Top left: The received spectrogram captured by the ADALM-PLUTO SDR.
+- Bottom left: Pixel-wise classification results. Zigbee pixels are correctly labeled in pink, and background noise is labeled in blue.
+- Right: The frequency mask highlights the detected Zigbee band in pink, consistent with the transmitted signal (centered at 2.4 GHz, 2 MHz wide).
+
+![Zigbee Classification](https://github.com/Gonzaleski/WLAN-Zigbee-Classifier/blob/main/resources/Results/Zigbee-Results.png)
+
+### WLAN
+
+The next figure shows the WLAN signal generated for transmission:
+
+![WLAN Transmission](https://github.com/Gonzaleski/WLAN-Zigbee-Classifier/blob/main/resources/Transmissions/WLAN-Transmission.png)
+
+The following classification result shows:
+
+- Top left: The received WLAN signal from the ADALM-PLUTO SDR.
+- Bottom left: Pixel classification, where WLAN regions are marked in purple and background in blue.
+- Right: The model identifies the WLAN operating band in gray, correctly corresponding to the transmitted signal (centered at 2.4 GHz, 20 MHz wide).
+
+![WLAN Classification](https://github.com/Gonzaleski/WLAN-Zigbee-Classifier/blob/main/resources/Results/WLAN-Results.png) 
+
+### Backgroun (Noise)
+
+To verify that the model is not producing false positives, it's also tested without transmitting any signal. As shown below, the model correctly labels the entire frame as background (blue), indicating no active Zigbee or WLAN signals:
+
+![Noise Classification](https://github.com/Gonzaleski/WLAN-Zigbee-Classifier/blob/main/resources/Results/Noise-Results.png) 
 
 ## **Hardware**  
 
 - [ADALM-PLUTO Software Defined Radio (SDR)](https://www.mouser.co.uk/ProductDetail/Analog-Devices/ADALM-PLUTO?qs=xbccQsLEe0ffoUoi%2FjfIWA%3D%3D&srsltid=AfmBOopmZ69ZNWqMXb250HqwJH8mDjs4Z5lK6xoUCLQz-2SmXdFxUKyD)
 
-## **Installation and Usage**
+## Installation and Usage
 
-### **Prerequisites**
+### Prerequisites
 - [Communications Toolbox](https://uk.mathworks.com/help/comm/index.html)
 - [Deep Learning Toolbox](https://uk.mathworks.com/help/deeplearning/index.html)
 - [Signal Processing Toolbox](https://uk.mathworks.com/help/signal/index.html)
@@ -38,7 +76,7 @@ This project is designed as part of the [Mathworks AI Challenge](https://uk.math
 - [Parallel Computing Toolbox](https://uk.mathworks.com/help/parallel-computing/index.html)
 - [ADALM-PLUTO Radio Support from Communications Toolbox](https://uk.mathworks.com/matlabcentral/fileexchange/61624-communications-toolbox-support-package-for-analog-devices-adalm-pluto-radio)
 
-### **Steps**
+### Steps
 1. Clone the repository:
    ```bash
    git clone https://github.com/Gonzaleski/WLAN-Zigbee-Classifier.git
@@ -69,7 +107,7 @@ This project is designed as part of the [Mathworks AI Challenge](https://uk.math
    - Go to scripts/testing
    - In MATLAB, run `testWithSDR.m`
 
-## **References**
+## References
 - [Create Waveforms Using Wireless Waveform Generator App](https://uk.mathworks.com/help/comm/ug/create-waveforms-using-wireless-waveform-generator-app.html)
 - [Semantic Segmentation Using Deep Learning](https://uk.mathworks.com/help/vision/ug/semantic-segmentation-using-deep-learning.html)
 - [What is ZigBee Protocol?](https://smartify.in/knowledgebase/zigbee-protocol-explained/)
