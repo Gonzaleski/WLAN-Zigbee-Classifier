@@ -3,6 +3,10 @@
 ## Table of Contents
 - [Project Overview](#project-overview)
   - [YouTube Link](#youtube-link)
+- [Classification](#classification)
+  - [Zigbee](#zigbee)
+  - [WLAN](#wlan)
+  - [Background (Noise)](#background-(noise))
 - [Hardware](#hardware)
 - [Installation and Usage](#installation-and-usage)
   - [Prerequisites](#prerequisites)
@@ -54,7 +58,7 @@ The following classification result shows:
 
 ![WLAN Classification](https://github.com/Gonzaleski/WLAN-Zigbee-Classifier/blob/main/resources/Results/WLAN-Results.png) 
 
-### Backgroun (Noise)
+### Background (Noise)
 
 To verify that the model is not producing false positives, it's also tested without transmitting any signal. As shown below, the model correctly labels the entire frame as background (blue), indicating no active Zigbee or WLAN signals:
 
