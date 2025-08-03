@@ -6,7 +6,7 @@
 - [Classification](#classification)
   - [Zigbee](#zigbee)
   - [WLAN](#wlan)
-  - [Background (Noise)](#background-(noise))
+  - [Background (Noise)](#background-noise)
 - [Hardware](#hardware)
 - [Installation and Usage](#installation-and-usage)
   - [Prerequisites](#prerequisites)
